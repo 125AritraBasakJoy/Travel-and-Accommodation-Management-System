@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php include('../public/inc/header.php');?>
+
 <?php include('../public/inc/footer.php');?>
 </body>
 </html>
