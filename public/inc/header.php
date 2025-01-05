@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-</head>    
-<header class="text-gray-600 body-font">
-  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-      <span class="ml-3 text-xl">Travel and Accommodation Management System</span>
-    </a>
-    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <a class="mr-5 hover:text-gray-900">First Link</a>
-      <a class="mr-5 hover:text-gray-900">Second Link</a>
-      <a class="mr-5 hover:text-gray-900">Third Link</a>
-      <a class="mr-5 hover:text-gray-900">Fourth Link</a>
-    </nav>
-    <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"></path>
-      </svg>
-    </button>
-  </div>
-</header>
+    <title>TAMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">TAMS</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a href="#" class="mr-5 hover:text-gray-900">Hotels</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Cars</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Flights</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Bundle + Save</a>
+            </nav>
+            <div class="inline-flex items-center space-x-4">
+                <div class="relative">
+                    <button class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Select Your Language</button>
+                    <div class="absolute hidden bg-white shadow-md mt-1 py-1 rounded">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">English (US)</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Español (US)</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Français (CA)</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">My Trips</button>
+                    <div class="absolute hidden bg-white shadow-md mt-1 py-1 rounded">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">See My Trips</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Member</button>
+                    <div class="absolute hidden bg-white shadow-md mt-1 py-1 rounded">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Trips</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Account</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
