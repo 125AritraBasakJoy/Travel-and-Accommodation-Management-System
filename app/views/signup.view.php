@@ -2,8 +2,26 @@
 // Done by Ashik Ibadullah
 require "../app/models/UserModel.php";
 
+$userModel = new UserModel();
+$message = ''; // Variable to store success or error message
 
+if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["phone"])) {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $phone = $_POST["phone"];
+
+    // Create user and set message based on the result
+    if ($userModel->createUser($name, $email, $password, $phone)) {
+        $message = "User account created successfully!";
+        $messageType = "success"; // Success message
+    } else {
+        $message = "Failed to create user account. The email may already be registered.";
+        $messageType = "error"; // Error message
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
