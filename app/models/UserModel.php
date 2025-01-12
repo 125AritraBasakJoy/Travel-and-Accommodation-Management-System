@@ -1,5 +1,5 @@
 <?php
-
+//Done by Aritra
 class UserModel
 {
     private $db;
@@ -24,7 +24,7 @@ class UserModel
         return $users;
     }
 
-    //Done by Aritra
+    //done by nusrat
     public function validateLogin($email, $password)
     {
         $sql = "SELECT `user_id`, `name`, `email`, `password` FROM user WHERE `email` = ?";
