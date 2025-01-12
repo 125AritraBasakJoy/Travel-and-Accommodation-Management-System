@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <button class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Member</button>
+                    <a href="login" class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Member</button>
                     <div class="absolute hidden bg-white shadow-md mt-1 py-1 rounded">
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Trips</a>
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Account</a>
