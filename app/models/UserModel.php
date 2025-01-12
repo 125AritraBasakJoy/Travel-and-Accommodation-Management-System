@@ -24,7 +24,7 @@ class UserModel
         return $users;
     }
 
-    
+    //done by nusrat
     public function validateLogin($email, $password)
     {
         $sql = "SELECT `user_id`, `name`, `email`, `password` FROM user WHERE `email` = ?";
