@@ -24,6 +24,7 @@ class UserModel
         return $users;
     }
 
+    //Done by Aritra
     public function validateLogin($email, $password)
     {
         $sql = "SELECT `user_id`, `name`, `email`, `password` FROM user WHERE `email` = ?";
