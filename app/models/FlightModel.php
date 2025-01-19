@@ -85,6 +85,7 @@ class FlightModel
         }
     }
  
+    
     // Delete a flight record
     public function deleteFlight($flight_id)
     {
