@@ -107,4 +107,3 @@ class FlightModel
 }
 ?>
 
-has context menu
