@@ -16,9 +16,27 @@
                 <span class="ml-3 text-xl">TAMS</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a href="hotel" class="mr-5 hover:text-gray-900">Hotels</a>
-                <a href="car" class="mr-5 hover:text-gray-900">Cars</a>
-                <a href="flight" class="mr-5 hover:text-gray-900">Flights</a>
+
+    <a href="hotel" class="mr-5 hover:text-gray-900">Hotels</a>
+    <a href="car" class="mr-5 hover:text-gray-900">Cars</a>
+    <a href="flight" class="mr-5 hover:text-gray-900">Flights</a>
+
+<script>
+    // Add active class to the current navigation link
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname.split("/").pop(); // Get the last part of the path
+        const links = document.querySelectorAll("nav a");
+        
+        links.forEach(link => {
+            if (link.getAttribute("href") === currentPath) {
+                link.classList.add("text-indigo-500", "font-bold"); // Add active styles
+            } else {
+                link.classList.remove("text-indigo-500", "font-bold"); // Remove active styles
+            }
+        });
+    });
+</script>
+
                 <a href="#" class="mr-5 hover:text-gray-900">Bundle + Save</a>
             </nav>
             <div class="inline-flex items-center space-x-4">

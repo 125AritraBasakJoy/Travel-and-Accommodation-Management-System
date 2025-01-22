@@ -31,7 +31,7 @@ class HotelModel
         // Prepare statement
         if ($stmt = $this->db->prepare($query)) {
             // Bind parameters
-            $stmt->bind_param("isidiss", $vendor_id, $name, $location_id, $description, $price_per_night, $capacity, $hotelPhoto);
+            $stmt->bind_param("isisdss", $vendor_id, $name, $location_id, $description, $price_per_night, $capacity, $hotelPhoto);
             
             // Execute query and return true if successful
             return $stmt->execute();
@@ -39,6 +39,7 @@ class HotelModel
         
         return false; // Return false if the query fails
     }
+    
 
     // Read: Get hotel by ID
     public function getHotelById($hotel_id)
@@ -62,7 +63,6 @@ class HotelModel
         return null; // Return null if no hotel is found
     }
 
-    // Update: Update hotel details
     public function updateHotel($hotel_id, $vendor_id, $name, $location_id, $description, $price_per_night, $capacity, $hotelPhoto)
     {
         $query = "UPDATE `hotel` SET `vendor_id` = ?, `name` = ?, `location_id` = ?, `description` = ?, `price_per_night` = ?, `capacity` = ?, `hotelPhoto` = ? WHERE `hotel_id` = ?";
@@ -70,7 +70,7 @@ class HotelModel
         // Prepare statement
         if ($stmt = $this->db->prepare($query)) {
             // Bind parameters
-            $stmt->bind_param("isidissi", $vendor_id, $name, $location_id, $description, $price_per_night, $capacity, $hotelPhoto, $hotel_id);
+            $stmt->bind_param("isisdssi", $vendor_id, $name, $location_id, $description, $price_per_night, $capacity, $hotelPhoto, $hotel_id);
             
             // Execute query and return true if successful
             return $stmt->execute();
@@ -78,6 +78,7 @@ class HotelModel
         
         return false; // Return false if the query fails
     }
+    
 
     // Delete: Delete a hotel by ID
     public function deleteHotel($hotel_id)
