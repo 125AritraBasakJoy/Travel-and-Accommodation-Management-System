@@ -115,7 +115,7 @@ $cars = $carModel->getAllCars();
                         <td class="px-4 py-2"><?php echo $car['location_id']; ?></td>
                         <td class="px-4 py-2">
                             <?php if ($car['carPhoto']): ?>
-                                <img src="../uploads/<?php echo $car['carPhoto']; ?>" alt="Car Photo" class="w-16 h-16 object-cover">
+                                <img src="../uploads/car/<?php echo $car['carPhoto']; ?>" alt="Car Photo" class="w-16 h-16 object-cover">
                             <?php else: ?>
                                 No Photo
                             <?php endif; ?>

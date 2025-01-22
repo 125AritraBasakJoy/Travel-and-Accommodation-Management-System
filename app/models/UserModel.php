@@ -1,5 +1,5 @@
 <?php
-//Done by Aritra
+// Done by Aritra
 class UserModel
 {
     private $db;
@@ -10,9 +10,10 @@ class UserModel
         $this->db = $database->getConnection();
     }
 
+    // READ all users
     public function getAllUsers()
     {
-        $sql = "SELECT `user_id`, `name`, `email`, `password`, `phone`, `created_at` FROM user";
+        $sql = "SELECT `user_id`, `name`, `email`, `phone`, `created_at` FROM user";
         $result = $this->db->query($sql);
 
         $users = [];
@@ -24,7 +25,25 @@ class UserModel
         return $users;
     }
 
-    //done by nusrat
+    // READ a single user by ID
+    public function getUserById($user_id)
+    {
+        $sql = "SELECT `user_id`, `name`, `email`, `phone`, `created_at` FROM user WHERE user_id = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param('i', $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result && $result->num_rows === 1) {
+                return $result->fetch_assoc(); // Return user data
+            }
+        }
+        return false; // User not found
+    }
+
+    // Validate login (already implemented by Nusrat)
     public function validateLogin($email, $password)
     {
         $sql = "SELECT `user_id`, `name`, `email`, `password` FROM user WHERE `email` = ?";
@@ -49,9 +68,10 @@ class UserModel
         return false;
     }
 
+    // CREATE a new user
     public function createUser($name, $email, $password, $phone)
     {
-        // Step 1: Check if the user already exists with the provided email
+        // Check if user already exists
         $sql = "SELECT * FROM user WHERE email = ?";
         $stmt = $this->db->prepare($sql);
     
@@ -60,36 +80,75 @@ class UserModel
             $stmt->execute();
             $result = $stmt->get_result();
     
-            // If a user with the same email already exists
             if ($result->num_rows > 0) {
                 return false; // User already exists
             }
         }
     
-        // Step 2: Hash the password before storing it
+        // Hash the password before storing
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
-        // Step 3: Insert the new user into the database
+        // Insert the new user into the database
         $sql = "INSERT INTO user (name, email, password, phone, created_at) VALUES (?, ?, ?, ?, NOW())";
         $stmt = $this->db->prepare($sql);
     
         if ($stmt) {
-            // Bind the parameters to the query
             $stmt->bind_param('ssss', $name, $email, $hashedPassword, $phone);
     
-            // Execute the query and return the result
             if ($stmt->execute()) {
-                return true; // User account created successfully
-            } else {
-                // Log or handle errors as needed
-                return false; // Failed to execute the insert query
+                return true; // User created successfully
             }
         }
     
-        return false; // Return false if the query couldn't be prepared
+        return false; // Failed to create user
     }
+
+    // UPDATE an existing user
+    public function updateUser($user_id, $name, $email, $phone)
+    {
+        // Check if email is already taken by another user
+        $sql = "SELECT * FROM user WHERE email = ? AND user_id != ?";
+        $stmt = $this->db->prepare($sql);
     
+        if ($stmt) {
+            $stmt->bind_param('si', $email, $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+    
+            if ($result->num_rows > 0) {
+                return false; // Email already taken
+            }
+        }
+    
+        // Update user details
+        $sql = "UPDATE user SET name = ?, email = ?, phone = ? WHERE user_id = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if ($stmt) {
+            $stmt->bind_param('sssi', $name, $email, $phone, $user_id);
+    
+            if ($stmt->execute()) {
+                return true; // User updated successfully
+            }
+        }
+    
+        return false; // Failed to update user
+    }
+
+    // DELETE a user
+    public function deleteUser($user_id)
+    {
+        $sql = "DELETE FROM user WHERE user_id = ?";
+        $stmt = $this->db->prepare($sql);
+
+        if ($stmt) {
+            $stmt->bind_param('i', $user_id);
+            if ($stmt->execute()) {
+                return true; // User deleted successfully
+            }
+        }
+    
+        return false; // Failed to delete user
+    }
 }
-
-
 ?>

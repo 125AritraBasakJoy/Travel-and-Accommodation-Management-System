@@ -24,14 +24,14 @@ $Cars = $Car->getAllCars(); // Fetch data from the database
               <img 
   alt="<?php echo htmlspecialchars($car['model']); ?>" 
   class="object-cover object-center w-full h-full block" 
-  src="<?php echo htmlspecialchars($car['carPhoto']); ?>" 
+  src="<?php echo htmlspecialchars("uploads/car/".$car['carPhoto']); ?>" 
   onerror="this.onerror=null;this.src='https://dummyimage.com/420x260/000/fff&text=No+Image';"
 >
 
               </a>
             </div>
             <div class="w-3/4 pl-4">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CAR MODEL</h3>
+              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"> CAR MODEL</h3>
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($car['model']); ?>
               </h2>
