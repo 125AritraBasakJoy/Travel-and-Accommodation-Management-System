@@ -112,5 +112,75 @@ class CarModel
             die("Delete operation failed: " . $stmt->error);
         }
     }
+// SEARCH cars with filters
+public function searchCars($filters = [])
+{
+    $query = "SELECT `car_id`, `vendor_id`, `model`, `make_year`, `seats`, `price_per_hour`, `location_id`, `carPhoto`, `created_at` FROM `car` WHERE 1=1";
+
+    $params = [];
+    $types = "";
+
+    if (!empty($filters['model'])) {
+        $query .= " AND `model` LIKE ?";
+        $params[] = "%" . $filters['model'] . "%";
+        $types .= "s";
+    }
+
+    if (!empty($filters['make_year'])) {
+        $query .= " AND `make_year` = ?";
+        $params[] = $filters['make_year'];
+        $types .= "i";
+    }
+
+    if (!empty($filters['seats'])) {
+        $query .= " AND `seats` >= ?";
+        $params[] = $filters['seats'];
+        $types .= "i";
+    }
+
+    if (!empty($filters['min_price'])) {
+        $query .= " AND `price_per_hour` >= ?";
+        $params[] = $filters['min_price'];
+        $types .= "d";
+    }
+
+    if (!empty($filters['max_price'])) {
+        $query .= " AND `price_per_hour` <= ?";
+        $params[] = $filters['max_price'];
+        $types .= "d";
+    }
+
+    if (!empty($filters['location_id'])) {
+        $query .= " AND `location_id` = ?";
+        $params[] = $filters['location_id'];
+        $types .= "i";
+    }
+
+    $stmt = $this->db->prepare($query);
+
+    if (!$stmt) {
+        die("Failed to prepare statement: " . $this->db->error);
+    }
+
+    if (!empty($params)) {
+        $stmt->bind_param($types, ...$params);
+    }
+
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        die("Query execution failed: " . $stmt->error);
+    }
+}
+
+
+
+
+
+
+
+
+
 }
 ?>

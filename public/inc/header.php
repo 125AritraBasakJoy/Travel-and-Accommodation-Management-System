@@ -17,9 +17,9 @@
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
 
-    <a href="hotel" class="mr-5 hover:text-gray-900">Hotels</a>
-    <a href="car" class="mr-5 hover:text-gray-900">Cars</a>
-    <a href="flight" class="mr-5 hover:text-gray-900">Flights</a>
+    <a href="<?php echo BASE_URL?>/hotel" class="mr-5 hover:text-gray-900">Hotels</a>
+    <a href="<?php echo BASE_URL?>/car" class="mr-5 hover:text-gray-900">Cars</a>
+    <a href="<?php echo BASE_URL?>/flight" class="mr-5 hover:text-gray-900">Flights</a>
 
 <script>
     // Add active class to the current navigation link

@@ -8,12 +8,62 @@
 <body>
 <?php include('../public/inc/header.php'); ?>
 <?php
+require "../app/models/Location.php";
 require "../app/models/HotelModel.php";
+// Instantiate the Location model
+$locationModel = new Location();
+$locations = $locationModel->getAllLocations();
+
 $hotel = new HotelModel();
 $hotels = $hotel->getAllHotels(); // Fetch data from the database
 ?>
 
 <section class="text-gray-600 body-font">
+
+<div class="container mx-auto py-8">
+        <!-- Search Form -->
+        <form method="GET" action="search/hotel" class="bg-white p-6 shadow-lg rounded-lg mb-8">
+            <div class="flex flex-wrap gap-4">
+                <!-- Search Bar -->
+                <div class="flex-grow">
+                    <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
+                    <input type="text" id="search" name="search" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Search by hotel name">
+                </div>
+
+                <!-- Price Range -->
+                <div class="w-1/4">
+                    <label for="min_price" class="block text-sm font-medium text-gray-700">Min Price</label>
+                    <input type="number" id="min_price" name="min_price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                <div class="w-1/4">
+                    <label for="max_price" class="block text-sm font-medium text-gray-700">Max Price</label>
+                    <input type="number" id="max_price" name="max_price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+
+                <!-- Location Filter -->
+                <div class="w-1/4">
+                    <label for="location_id" class="block text-sm font-medium text-gray-700">Location</label>
+                    <select id="location_id" name="location_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+    <option value="">All Locations</option>
+    <?php foreach ($locations as $location): ?>
+        <option value="<?= htmlspecialchars($location['location_id']) ?>">
+            <?= htmlspecialchars($location['city'] . ', ' . $location['state'] . ', ' . $location['country']) ?>
+        </option>
+    <?php endforeach; ?>
+</select>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex items-end">
+                    <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700">Search</button>
+                </div>
+            </div>
+        </form>
+
+</div>        
+
+
+
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
 

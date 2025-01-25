@@ -8,14 +8,117 @@
 <body>
 <?php include('../public/inc/header.php'); ?>
 <?php
-require "../app/models/FlightModel.php"; // Assuming you have a FlightModel for fetching flight data
-$Flight = new FlightModel();
-$Flights = $Flight->getAllFlights(); // Fetch data from the database
-?>
+require "../app/models/FlightModel.php";
+require "../app/models/Location.php";
 
+$Flight = new FlightModel();
+$Flights =$Flight->getAllFlights();
+$locationModel = new Location();
+$locations = $locationModel->getAllLocations();
+// Fetch data from the database
+?>
 
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
+    <!-- Search Form -->
+    <form action="search/flight" method="GET" class="mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Departure Location Dropdown -->
+        <div>
+          <label for="departure" class="block text-sm font-medium text-gray-700 mb-2">Departure Location</label>
+          <select 
+            id="departure" 
+            name="departure" 
+            class="w-full p-2 border border-gray-300 rounded"
+            required
+          >
+            <option value="">Select Departure</option>
+            <?php foreach ($locations as $location) { ?>
+              <option value="<?php echo htmlspecialchars($location['location_id']); ?>">
+                <?php echo htmlspecialchars($location['city']) . ', ' . htmlspecialchars($location['country']); ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+
+        <!-- Arrival Location Dropdown -->
+        <div>
+          <label for="arrival" class="block text-sm font-medium text-gray-700 mb-2">Arrival Location</label>
+          <select 
+            id="arrival" 
+            name="arrival" 
+            class="w-full p-2 border border-gray-300 rounded"
+            required
+          >
+            <option value="">Select Arrival</option>
+            <?php foreach ($locations as $location) { ?>
+              <option value="<?php echo htmlspecialchars($location['location_id']); ?>">
+                <?php echo htmlspecialchars($location['city']) . ', ' . htmlspecialchars($location['country']); ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+
+        <!-- Departure Date -->
+        <div>
+          <label for="departure_date" class="block text-sm font-medium text-gray-700 mb-2">Departure Date</label>
+          <input 
+            type="date" 
+            id="departure_date" 
+            name="departure_date" 
+            class="w-full p-2 border border-gray-300 rounded"
+            required
+          >
+        </div>
+
+        <!-- Arrival Date -->
+        <div>
+          <label for="arrival_date" class="block text-sm font-medium text-gray-700 mb-2">Arrival Date</label>
+          <input 
+            type="date" 
+            id="arrival_date" 
+            name="arrival_date" 
+            class="w-full p-2 border border-gray-300 rounded"
+          >
+        </div>
+
+        <!-- Budget Filter -->
+        <div>
+          <label for="budget" class="block text-sm font-medium text-gray-700 mb-2">Budget ($)</label>
+          <input 
+            type="number" 
+            id="budget" 
+            name="budget" 
+            placeholder="Enter max budget"
+            class="w-full p-2 border border-gray-300 rounded"
+          >
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-4">
+        <button 
+          type="submit" 
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+
+
+
+
+
+
+
+
+  
     <div class="-my-8">
       <?php if (!empty($Flights)) { ?>
         <?php foreach ($Flights as $flight) { ?>

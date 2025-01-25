@@ -44,39 +44,46 @@
     <!-- Cards for Car, Flight, Hotel, Vendor, and User Management -->
     <div class="card-container">
         <!-- Car Management Card -->
-        <div class="card dashboard-card" onclick="window.location.href='car'">
+        <div class="card dashboard-card" onclick="window.location.href='admin/car'">
             <i class="fas fa-car"></i>
             <h4>Manage Cars</h4>
             <p>Click to manage the cars in your system.</p>
         </div>
         
         <!-- Flight Management Card -->
-        <div class="card dashboard-card" onclick="window.location.href='flight'">
+        <div class="card dashboard-card" onclick="window.location.href='admin/flight'">
             <i class="fas fa-plane"></i> <!-- Changed to plane icon for flight -->
             <h4>Manage Flights</h4>
             <p>Click to manage the flight details in your system.</p>
         </div>
         
         <!-- Hotel Management Card -->
-        <div class="card dashboard-card" onclick="window.location.href='hotel'">
+        <div class="card dashboard-card" onclick="window.location.href='admin/hotel'">
             <i class="fas fa-hotel"></i> <!-- Changed to hotel icon for clarity -->
             <h4>Manage Hotels</h4>
             <p>Click to manage the hotels in your system.</p>
         </div>
 
         <!-- Vendor Management Card -->
-        <div class="card dashboard-card" onclick="window.location.href='vendor'">
+        <div class="card dashboard-card" onclick="window.location.href='admin/vendor'">
             <i class="fas fa-briefcase"></i> <!-- Changed to briefcase icon for vendor -->
             <h4>Manage Vendors</h4>
             <p>Click to manage the vendors in your system.</p>
         </div>
 
         <!-- User Management Card -->
-        <div class="card dashboard-card" onclick="window.location.href='user'">
+        <div class="card dashboard-card" onclick="window.location.href='admin/user'">
             <i class="fas fa-users"></i>
             <h4>Manage Users</h4>
             <p>Click to manage the users in your system.</p>
         </div>
+
+        <!-- User Management Card -->
+        <div class="card dashboard-card" onclick="window.location.href='admin/location'">
+            <i class="fas fa-users"></i>
+            <h4>Manage location</h4>
+            <p>Click to manage the users in your system.</p>
+        </div>        
     </div>
 </div>
 

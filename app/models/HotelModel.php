@@ -8,7 +8,11 @@ class HotelModel
         $database = new Database();
         $this->db = $database->getConnection(); // Assuming getConnection() is a mysqli connection
     }
-
+    // Getter for the database connection
+    public function getDb()
+    {
+        return $this->db;
+    }
     // Read: Get all hotels
     public function getAllHotels()
     {

@@ -11,7 +11,36 @@
 require "../app/models/CarModel.php";
 $Car = new CarModel();
 $Cars = $Car->getAllCars(); // Fetch data from the database
+          // Fetch locations dynamically (Assume LocationModel exists)
+          require "../app/models/Location.php";
+          $Location = new Location();
+          $locations = $Location->getAllLocations();
 ?>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-12 mx-auto">
+    <!-- Search Form -->
+    <form action="search/car" method="GET" class="mb-8 bg-gray-100 p-6 rounded-lg">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Seats -->
+        <input type="number" name="seats" placeholder="Seats" class="p-2 border rounded-lg" />
+        <!-- Min Price -->
+        <input type="number" name="min_price" placeholder="Min Price" class="p-2 border rounded-lg" />
+        <!-- Max Price -->
+        <input type="number" name="max_price" placeholder="Max Price" class="p-2 border rounded-lg" />
+        <!-- Location -->
+        <select name="location_id" class="p-2 border rounded-lg">
+          <option value="">Select Location</option>
+          <?php
+          foreach ($locations as $location) {
+              echo "<option value='" . htmlspecialchars($location['location_id']) . "'>" . htmlspecialchars($location['city']) . "</option>";
+          }
+          ?>
+        </select>
+      </div>
+      <button type="submit" class="mt-4 w-full bg-blue-500 text-white p-2 rounded-lg">Search</button>
+    </form>
+  </div>
+</section>
 
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
