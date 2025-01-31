@@ -7,15 +7,18 @@
 </head>
 <body>
 <?php include('../public/inc/header.php'); ?>
+
 <?php
 require "../app/models/CarModel.php";
 $Car = new CarModel();
 $Cars = $Car->getAllCars(); // Fetch data from the database
-          // Fetch locations dynamically (Assume LocationModel exists)
-          require "../app/models/Location.php";
-          $Location = new Location();
-          $locations = $Location->getAllLocations();
+
+// Fetch locations dynamically (Assume LocationModel exists)
+require "../app/models/Location.php";
+$Location = new Location();
+$locations = $Location->getAllLocations();
 ?>
+
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-12 mx-auto">
     <!-- Search Form -->
@@ -50,13 +53,12 @@ $Cars = $Car->getAllCars(); // Fetch data from the database
           <div class="py-8 flex items-center border-b border-gray-200">
             <div class="w-1/4">
               <a class="block relative h-48 rounded overflow-hidden">
-              <img 
-  alt="<?php echo htmlspecialchars($car['model']); ?>" 
-  class="object-cover object-center w-full h-full block" 
-  src="<?php echo htmlspecialchars("uploads/car/".$car['carPhoto']); ?>" 
-  onerror="this.onerror=null;this.src='https://dummyimage.com/420x260/000/fff&text=No+Image';"
->
-
+                <img 
+                  alt="<?php echo htmlspecialchars($car['model']); ?>" 
+                  class="object-cover object-center w-full h-full block" 
+                  src="<?php echo htmlspecialchars("uploads/car/".$car['carPhoto']); ?>" 
+                  onerror="this.onerror=null;this.src='https://dummyimage.com/420x260/000/fff&text=No+Image';"
+                >
               </a>
             </div>
             <div class="w-3/4 pl-4">
@@ -67,6 +69,16 @@ $Cars = $Car->getAllCars(); // Fetch data from the database
               <p class="mt-1">Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
               <p class="mt-1">Price per Hour: $<?php echo htmlspecialchars($car['price_per_hour']); ?></p>
               <p class="mt-1">Make Year: <?php echo htmlspecialchars($car['make_year']); ?></p>
+
+              <!-- Booking Button for Logged-In Users -->
+              <?php if (isset($_SESSION['user_id'])) { ?>
+                <form action="booking/car" method="GET" class="mt-4">
+                  <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['car_id']); ?>">
+                  <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg">Book Now</button>
+                </form>
+              <?php } else { ?>
+                <p class="mt-4 text-red-500">Please log in to book this car.</p>
+              <?php } ?>
             </div>
           </div>
         <?php } ?>
@@ -76,6 +88,7 @@ $Cars = $Car->getAllCars(); // Fetch data from the database
     </div>
   </div>
 </section>
+
 <?php include('../public/inc/footer.php'); ?>
 </body>
 </html>
