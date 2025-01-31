@@ -20,28 +20,40 @@ session_start();
                 <span class="ml-3 text-xl">TAMS</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a href="<?php echo BASE_URL ?>/hotel" class="mr-5 hover:text-gray-900">Hotels</a>
-                <a href="<?php echo BASE_URL ?>/car" class="mr-5 hover:text-gray-900">Cars</a>
-                <a href="<?php echo BASE_URL ?>/flight" class="mr-5 hover:text-gray-900">Flights</a>
+                <a href="<?php echo BASE_URL ?>hotel" class="mr-5 hover:text-gray-900">Hotels</a>
+                <a href="<?php echo BASE_URL ?>car" class="mr-5 hover:text-gray-900">Cars</a>
+                <a href="<?php echo BASE_URL ?>flight" class="mr-5 hover:text-gray-900">Flights</a>
                 <a href="#" class="mr-5 hover:text-gray-900">Bundle + Save</a>
             </nav>
             <div class="inline-flex items-center space-x-4">
+                <?php if (isset($_SESSION['user_name'])): ?>
+                    <!-- My Bookings Dropdown -->
+                    <div class="relative">
+                        <button id="bookingsDropdownBtn" class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">
+                            My Bookings
+                        </button>
+                        <div id="bookingsDropdownMenu" class="absolute hidden bg-white shadow-md mt-1 py-1 rounded w-48">
+                            <a href="<?php echo BASE_URL ?>booking/hotel" class="block px-4 py-2 hover:bg-gray-100">Hotel Bookings</a>
+                            <a href="<?php echo BASE_URL ?>booking/car" class="block px-4 py-2 hover:bg-gray-100">Car Bookings</a>
+                            <a href="<?php echo BASE_URL ?>booking/flight" class="block px-4 py-2 hover:bg-gray-100">Flight Bookings</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- User Dropdown -->
                 <div class="relative">
-                    <button class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">My Trips</button>
-                </div>
-                <div class="relative">
-                    <?php if(isset($_SESSION['user_name'])): ?>
+                    <?php if (isset($_SESSION['user_name'])): ?>
                         <div class="relative">
                             <button id="userDropdownBtn" class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">
                                 <?php echo $_SESSION['user_name']; ?>
                             </button>
                             <div id="userDropdownMenu" class="absolute hidden bg-white shadow-md mt-1 py-1 rounded w-40">
-                                <a href="user" class="block px-4 py-2 hover:bg-gray-100">My Account</a>
-                                <a href="login" class="block px-4 py-2 hover:bg-gray-100">Sign Out</a>
+                                <a href="<?php echo BASE_URL ?>/user" class="block px-4 py-2 hover:bg-gray-100">My Account</a>
+                                <a href="<?php echo BASE_URL ?>/login" class="block px-4 py-2 hover:bg-gray-100">Sign Out</a>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="login.php" class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Login</a>
+                        <a href="<?php echo BASE_URL ?>/login" class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">Login</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -50,18 +62,36 @@ session_start();
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // User Dropdown
             const userButton = document.querySelector("#userDropdownBtn");
-            const dropdownMenu = document.querySelector("#userDropdownMenu");
+            const userDropdownMenu = document.querySelector("#userDropdownMenu");
 
-            if (userButton && dropdownMenu) {
+            if (userButton && userDropdownMenu) {
                 userButton.addEventListener("click", function (event) {
                     event.stopPropagation();
-                    dropdownMenu.classList.toggle("hidden");
+                    userDropdownMenu.classList.toggle("hidden");
                 });
 
                 document.addEventListener("click", function (event) {
-                    if (!userButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                        dropdownMenu.classList.add("hidden");
+                    if (!userButton.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+                        userDropdownMenu.classList.add("hidden");
+                    }
+                });
+            }
+
+            // My Bookings Dropdown
+            const bookingsButton = document.querySelector("#bookingsDropdownBtn");
+            const bookingsDropdownMenu = document.querySelector("#bookingsDropdownMenu");
+
+            if (bookingsButton && bookingsDropdownMenu) {
+                bookingsButton.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    bookingsDropdownMenu.classList.toggle("hidden");
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (!bookingsButton.contains(event.target) && !bookingsDropdownMenu.contains(event.target)) {
+                        bookingsDropdownMenu.classList.add("hidden");
                     }
                 });
             }

@@ -24,17 +24,17 @@ if (!empty($locations)) {
         $locationName = !empty($data["state"]) 
             ? htmlspecialchars($data["state"]) . ' • ' . htmlspecialchars($data["country"]) 
             : htmlspecialchars($data["country"]);
-
-        echo '<div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                <a class="block relative h-48 rounded overflow-hidden">
-                  <img alt="location" class="object-cover object-center w-full h-full block" src="uploads/' . htmlspecialchars($data["locationPhoto"]) . '" onerror="this.onerror=null;this.src=\'https://dummyimage.com/420x260\';">
-                </a>
-                <div class="mt-4">
-                  <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <h2 class="text-gray-900 title-font text-lg font-medium">' . htmlspecialchars($data["city"]) . '</h2>
-                  <p class="mt-1">' . $locationName . '</p>
-                </div>
-              </div>';
+            echo '
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a href="TripPlanner?location=' . htmlspecialchars($data["location_id"]) . '" class="block relative h-48 rounded overflow-hidden">
+                <img alt="location" class="object-cover object-center w-full h-full block" src="uploads/' . htmlspecialchars($data["locationPhoto"]) . '" onerror="this.onerror=null;this.src=\'https://dummyimage.com/420x260\';">
+              </a>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">' . htmlspecialchars($data["city"]) . '</h2>
+                <p class="mt-1">' . $locationName . '</p>
+              </div>
+            </div>';
     }
 } else {
     echo '<p class="text-center w-full text-gray-500">No locations available.</p>';

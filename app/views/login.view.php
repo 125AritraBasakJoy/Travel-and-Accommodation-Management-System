@@ -1,5 +1,6 @@
 <?php
 session_start(); // Start the session
+
 require "../app/models/UserModel.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
@@ -18,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['pass
         $error = "Invalid email or password.";
     }
 }
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
