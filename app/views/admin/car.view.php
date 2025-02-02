@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $carModel->createCar($_POST['vendor_id'], $_POST['model'], $_POST['make_year'], $_POST['seats'], $_POST['price_per_hour'], $_POST['location_id'], $carPhoto);
             $message = "Car created successfully!";
         } elseif ($action === 'update') {
-            // Handle file upload for update
+            // Handle file upload for update 
             $carPhoto = $_POST['existing_carPhoto']; // Keep the existing photo if not updated
             if (isset($_FILES['carPhoto']) && $_FILES['carPhoto']['error'] === UPLOAD_ERR_OK) {
                 $targetDir = "../public/uploads/car/";
