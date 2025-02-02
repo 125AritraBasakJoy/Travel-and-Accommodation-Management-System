@@ -63,7 +63,7 @@ $profile_status = $_SESSION['profile_status'];
             <a href="approver" class="w-full bg-blue-600 text-white py-2 rounded text-center transform transition duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg hover:animate-bounce">Manage Order</a>
         </div>        
 
-        <!-- Log out Button -->
+        <!-- Log out Button --> 
         <div class="mt-6">
             <a href="login" class="w-full bg-red-600 text-white py-2 rounded text-center transform transition duration-300 hover:bg-red-700 hover:scale-105 hover:shadow-lg hover:animate-bounce">Log Out</a>
         </div>
