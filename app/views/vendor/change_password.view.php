@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error_message'] = $result;
     }
 
-    // Redirect to the change password page
+    // Redirect to the change password page 
     header("Location: change_password");
     exit();
 }
