@@ -2,7 +2,7 @@
 
 class Booking extends Controller{
     public function index() {
-        // Safely get the 'url' from $_GET
+        // Safely get the 'url' from $_GET 
         if (isset($_GET["url"])) {
             // Split the URL by "/"
             $urlParts = explode("/", $_GET["url"]);
