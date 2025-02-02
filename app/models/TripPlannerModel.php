@@ -1,19 +1,22 @@
 <?php
+//Define the TripPlannerClass
 class TripPlannerModel
 {
     private $db;
 
-    public function __construct()
+    public function __construct() //object
     {
         $database = new Database();
         $this->db = $database->getConnection();
     }
 
+    //Calculate Total Cost
     public function getTotalCost(?array $hotel, ?array $flight, ?array $car, int $hotelNights = 3, int $carHours = 5): float
     {
         return $this->calculateTotalCost($hotel, $flight, $car, $hotelNights, $carHours);
     }
 
+    //Find the Cheapest Trip
     public function findBudgetTrip(int $location_id): array
     {
         $hotels = $this->getHotelsByLocation($location_id);
@@ -24,8 +27,10 @@ class TripPlannerModel
         $cheapestFlight = $this->findCheapestFlight($flights);
         $cheapestCar = $this->findCheapestCar($cars);
 
+        //Calculate the total cost
         $totalCost = $this->calculateTotalCost($cheapestHotel, $cheapestFlight, $cheapestCar);
 
+        //Return the details
         return [
             'hotel' => $cheapestHotel,
             'flight' => $cheapestFlight,
@@ -34,6 +39,7 @@ class TripPlannerModel
         ];
     }
 
+    // Retrieves all options for given location_id
     public function fillModal(int $location_id): array
     {
         $hotels = $this->getHotelsByLocation($location_id);
@@ -47,6 +53,7 @@ class TripPlannerModel
         ];
     }
 
+    //Fetch Hotels
     private function getHotelsByLocation(int $location_id): array
     {
         $query = "SELECT * FROM hotel WHERE location_id = ?";
@@ -63,6 +70,7 @@ class TripPlannerModel
         return $hotels;
     }
 
+    //Fetch Flights
     private function getFlightsByLocation(int $location_id): array
     {
         $query = "SELECT * FROM flight WHERE departure_location_id = ? OR arrival_location_id = ?";
@@ -79,6 +87,7 @@ class TripPlannerModel
         return $flights;
     }
 
+    //Fetch Cars
     private function getCarsByLocation(int $location_id): array
     {
         $query = "SELECT * FROM car WHERE location_id = ?";
@@ -95,6 +104,7 @@ class TripPlannerModel
         return $cars;
     }
 
+    //Find the Cheapest Hotels
     private function findCheapestHotel(array $hotels): ?array
     {
         if (empty($hotels)) {
@@ -111,6 +121,7 @@ class TripPlannerModel
         return $cheapest;
     }
 
+     //Find the Cheapest Flights
     private function findCheapestFlight(array $flights): ?array
     {
         if (empty($flights)) {
@@ -127,6 +138,7 @@ class TripPlannerModel
         return $cheapest;
     }
 
+     //Find the Cheapest Cars
     private function findCheapestCar(array $cars): ?array
     {
         if (empty($cars)) {
@@ -143,6 +155,7 @@ class TripPlannerModel
         return $cheapest;
     }
 
+    //Calculate Total Trip Cost
     public function calculateTotalCost(?array $hotel, ?array $flight, ?array $car, int $hotelNights = 3, int $carHours = 5): float
     {
         $totalCost = 0;
