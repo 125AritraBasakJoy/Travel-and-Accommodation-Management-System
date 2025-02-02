@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updatedEmail = $_POST['email'];
     $updatedPhone = $_POST['phone'];
 
-    // Update vendor information
+    // Update vendor information 
     $updateResult = $vendor->updateVendor($vendor_id, $updatedName, $updatedEmail, $updatedPhone, $type, $profile_status);
 
     if ($updateResult) {
