@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $bookings = $BookingFlight->getUserBookings($user_id);
 ?>
 
-
 <body class="bg-gray-100">
 
     <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
