@@ -15,8 +15,8 @@ $BookingCar = new BookingCar();
 $Car = new CarModel();
 
 // Get car details from the ID passed
-$car_id = filter_input(INPUT_GET, 'car_id', FILTER_VALIDATE_INT);
-$car = $car_id ? $Car->getCarById($car_id) : null;
+$car_id = filter_input(INPUT_GET, 'car_id', FILTER_VALIDATE_INT); //Gets Car id
+$car = $car_id ? $Car->getCarById($car_id) : null; //Fetch to cardetails()
 
 // Handle booking if the car is found
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

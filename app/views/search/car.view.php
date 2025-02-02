@@ -3,6 +3,7 @@
 require "../app/models/CarModel.php";
 
 $Car = new CarModel();
+//Read user input
 $filters = [
     'seats' => $_GET['seats'] ?? null,
     'min_price' => $_GET['min_price'] ?? null,
@@ -10,6 +11,7 @@ $filters = [
     'location_id' => $_GET['location_id'] ?? null,
 ];
 
+//Return opuput
 $Cars = $Car->searchCars($filters);
 ?>
 
@@ -42,7 +44,7 @@ $Cars = $Car->searchCars($filters);
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="-my-8">
-      <!-- Check If Car Empty -->
+      <!-- Check If Cars are not Empty -->
       <?php if (!empty($Cars)) { ?>
         <!-- Loop through cars and display them -->
         <?php foreach ($Cars as $car) { ?>
