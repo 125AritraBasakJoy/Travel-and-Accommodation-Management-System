@@ -135,6 +135,7 @@ $results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($flight['flight_number']); ?>
               </h2>
+              
               <p class="mt-1">Departure: <?php echo htmlspecialchars($Location->getLocationById($flight['departure_location_id'])['city']); ?></p>
               <p class="mt-1">Arrival: <?php echo htmlspecialchars($Location->getLocationById($flight['arrival_location_id'])['city']); ?></p>
               <p class="mt-1">Departure Time: <?php echo htmlspecialchars($flight['departure_time']); ?></p>
