@@ -13,7 +13,7 @@ require "../app/models/HotelModel.php";
 // Instantiate the Location model
 $locationModel = new Location();
 $locations = $locationModel->getAllLocations();
-
+$isLoggedIn = isset($_SESSION['user_id']);
 
 $hotelModel = new HotelModel();
 $hotels = $hotelModel->getAllHotels(); // Fetch data from the database
@@ -97,9 +97,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <div class="p-4">
                         <h2 class="text-lg font-semibold text-gray-800"><?= htmlspecialchars($hotel['name']) ?></h2>
                         <p class="text-gray-600"><?= htmlspecialchars($hotel['description']) ?></p>
-                        <p class="mt-2 text-indigo-600 font-bold">$<?= number_format($hotel['price_per_night'], 2) ?> / night</p>
+                        <p class="mt-2 text-indigo-600 font-bold">৳<?= number_format($hotel['price_per_night'], 2) ?> / night</p>
                     </div>
+                    <?php
+                              // If user is logged in, show "Book Now" button
+              if ($isLoggedIn) {
+                echo '<a href="'.BASE_URL.'/booking?hotel_id=' . $hotel['hotel_id'] . '" class="mt-4 block text-center px-6 py-2 text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700">Book Now</a>';
+            } else {
+                echo '<p class="mt-4 text-sm text-red-500">Login to book this hotel.</p>';
+            }
+                ?>
                 </div>
+
             <?php endforeach; ?>
         </div>
 

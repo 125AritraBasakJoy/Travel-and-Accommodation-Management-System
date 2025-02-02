@@ -1,6 +1,6 @@
 <?php
 require "../app/models/VendorModel.php";
-
+require "../app/models/HotelModel.php";
 $vendorModel = new Vendor();
 $message = "";
 

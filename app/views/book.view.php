@@ -5,7 +5,7 @@ require "../app/models/BookingHotel.php";
 
 // ✅ Redirect if user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php?error=Please login to book a hotel");
+    header("Location: login?error=Please login to book a hotel");
     exit();
 }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bookingSuccess = $bookingHotel->createBooking($user_id, $hotel_id, $check_in, $check_out, $total_price);
 
         if ($bookingSuccess) {
-            $success = "Booking successful! Your total price is $" . number_format($total_price, 2);
+            $success = "Booking successful! Your total price is ৳" . number_format($total_price, 2);
         } else {
             $error = "Booking failed. Please try again.";
         }

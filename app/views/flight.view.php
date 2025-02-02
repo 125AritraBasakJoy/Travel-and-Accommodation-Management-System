@@ -28,7 +28,7 @@ $is_logged_in = isset($_SESSION['user_id']);
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <!-- Search Form -->
-    <form action="" method="GET" class="mb-8">
+    <form action="search/flight" method="GET" class="mb-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Departure Location -->
         <div>
@@ -95,11 +95,11 @@ $is_logged_in = isset($_SESSION['user_id']);
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($flight['flight_number']); ?>
               </h2>
-              <p class="mt-1">Departure: <?php echo htmlspecialchars($flight['departure_location_id']); ?></p>
-              <p class="mt-1">Arrival: <?php echo htmlspecialchars($flight['arrival_location_id']); ?></p>
+              <p class="mt-1">Departure: <?php echo htmlspecialchars($Location->getLocationById($flight['departure_location_id'])['city']); ?></p>
+              <p class="mt-1">Arrival: <?php echo htmlspecialchars($Location->getLocationById($flight['arrival_location_id'])['city']); ?></p>
               <p class="mt-1">Departure Time: <?php echo htmlspecialchars($flight['departure_time']); ?></p>
               <p class="mt-1">Arrival Time: <?php echo htmlspecialchars($flight['arrival_time']); ?></p>
-              <p class="mt-1">Price: $<?php echo htmlspecialchars($flight['price']); ?></p>
+              <p class="mt-1">Price: ৳<?php echo htmlspecialchars($flight['price']); ?></p>
 
               <!-- Booking Button -->
               <?php if ($is_logged_in) { ?>
@@ -114,7 +114,7 @@ $is_logged_in = isset($_SESSION['user_id']);
                 </form>
               <?php } else { ?>
                 <p class="mt-4 text-red-500">
-                  <a href="login.php" class="underline">Log in</a> to book this flight.
+                  <a href="login" class="underline">Log in</a> to book this flight.
                 </p>
               <?php } ?>
             </div>

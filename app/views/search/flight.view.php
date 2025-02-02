@@ -9,7 +9,7 @@ $Location = new Location();
 $departure = $_GET['departure'] ?? '';
 $arrival = $_GET['arrival'] ?? '';
 $budget = $_GET['budget'] ?? '';
-
+$locations = $Location->getAllLocations();
 // Fetch matching flights
 $results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
 ?>
@@ -135,11 +135,27 @@ $results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($flight['flight_number']); ?>
               </h2>
-              <p class="mt-1">Departure: <?php echo htmlspecialchars($flight['departure_location_id']); ?></p>
-              <p class="mt-1">Arrival: <?php echo htmlspecialchars($flight['arrival_location_id']); ?></p>
+              <p class="mt-1">Departure: <?php echo htmlspecialchars($Location->getLocationById($flight['departure_location_id'])['city']); ?></p>
+              <p class="mt-1">Arrival: <?php echo htmlspecialchars($Location->getLocationById($flight['arrival_location_id'])['city']); ?></p>
               <p class="mt-1">Departure Time: <?php echo htmlspecialchars($flight['departure_time']); ?></p>
               <p class="mt-1">Arrival Time: <?php echo htmlspecialchars($flight['arrival_time']); ?></p>
-              <p class="mt-1">Price: $<?php echo htmlspecialchars($flight['price']); ?></p>
+              <p class="mt-1">Price: ৳<?php echo htmlspecialchars($flight['price']); ?></p>
+                          <!-- Booking Button -->
+                          <?php if ((isset($_SESSION['user_id']))) { ?>
+                <form action="<?php echo BASE_URL?>booking/flight" method="POST">
+                  <input type="hidden" name="flight_id" value="<?php echo $flight['flight_id']; ?>">
+                  <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                  <input type="hidden" name="price" value="<?php echo $flight['price']; ?>">
+                  <button type="submit"
+                          class="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Book Now
+                  </button>
+                </form>
+              <?php } else { ?>
+                <p class="mt-4 text-red-500">
+                  <a href="login" class="underline">Log in</a> to book this flight.
+                </p>
+              <?php } ?>
             </div>
           </div>
         <?php } ?>

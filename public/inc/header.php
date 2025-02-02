@@ -23,7 +23,6 @@ session_start();
                 <a href="<?php echo BASE_URL ?>hotel" class="mr-5 hover:text-gray-900">Hotels</a>
                 <a href="<?php echo BASE_URL ?>car" class="mr-5 hover:text-gray-900">Cars</a>
                 <a href="<?php echo BASE_URL ?>flight" class="mr-5 hover:text-gray-900">Flights</a>
-                <a href="#" class="mr-5 hover:text-gray-900">Bundle + Save</a>
             </nav>
             <div class="inline-flex items-center space-x-4">
                 <?php if (isset($_SESSION['user_name'])): ?>
