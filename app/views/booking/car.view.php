@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+
 $BookingCar = new BookingCar();
 $Car = new CarModel();
 
