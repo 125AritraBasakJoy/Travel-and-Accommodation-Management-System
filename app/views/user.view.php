@@ -1,6 +1,6 @@
 
 
-<?php include('../public/inc/header.php'); ?>
+<?php ob_start();include('../public/inc/header.php'); ?>
 <?php
 
 require "../app/models/UserModel.php";
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($updateStatus) {
         $_SESSION['user_name'] = $name; // Update session data
-        header("Location: user?success=1");
+        header("Location: ?success=1");
         exit();
     } else {
         $error = "Failed to update profile.";

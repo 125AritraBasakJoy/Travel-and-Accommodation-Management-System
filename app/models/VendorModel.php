@@ -157,7 +157,7 @@ public function validateLogin($email, $password)
 {
     $sql = "SELECT * FROM vendor WHERE `email` = ?";
     $stmt = $this->db->prepare($sql);
-
+echo "hi";
     if ($stmt) {
         // Use bind_param for MySQLi
         $stmt->bind_param('s', $email); // 's' means string for the email parameter
