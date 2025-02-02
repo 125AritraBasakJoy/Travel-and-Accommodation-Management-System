@@ -2,7 +2,33 @@
 require "../app/models/VendorModel.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ... (PHP code remains the same)
+    // Get form data
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    // Create Vendor object
+    $vendor = new Vendor();
+
+    // Validate login credentials
+    $vendorData = $vendor->validateLogin($email, $password);
+
+    if ($vendorData) {
+        // Vendor is successfully logged in, store vendor data in session
+        $_SESSION['vendor_id'] = $vendorData['vendor_id'];
+        $_SESSION['vendor_name'] = $vendorData['name'];
+        $_SESSION['email'] = $vendorData['email'];
+        $_SESSION['profile_status'] = $vendorData['profile_status'];
+        $_SESSION['type'] = $vendorData['type'];
+
+        // Redirect to vendor dashboard
+        header("Location: dashboard");
+        exit();
+    } else {
+        // Invalid login credentials or profile not approved
+        $_SESSION['error_message'] = "Invalid credentials or profile not approved.";
+        header("Location: login");
+        exit();
+    }
 }
 ?>
 
