@@ -14,7 +14,7 @@ class Admin extends Controller {
                 $this->view('admin');  // Default to the 'admin' view
             }
         } else {
-            // If the 'url' is not set in the query, default to 'admin'
+            // If the 'url' is not set in the query, default to 'admin' 
             $this->view('admin');
         }
     }
