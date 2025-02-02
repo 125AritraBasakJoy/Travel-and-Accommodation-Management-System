@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($flights as $flight): ?>
+                <?php foreach ($flights as $flight): ?> 
                     <tr>
                         <td class="px-4 py-2 border"><?= htmlspecialchars($flight['flight_id']) ?></td>
                         <td class="px-4 py-2 border"><?= htmlspecialchars($flight['vendor_id']) ?></td>
