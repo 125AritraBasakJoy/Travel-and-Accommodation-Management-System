@@ -5,7 +5,7 @@ require "../app/models/HotelModel.php";
 
 // ✅ Redirect if user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php?error=Please login to view bookings");
+    header("Location: login?error=Please login to view bookings");
     exit();
 }
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_booking_id']))
                             <td class="p-3"><?= htmlspecialchars($booking['hotel_name']) ?></td>
                             <td class="p-3"><?= htmlspecialchars($booking['check_in']) ?></td>
                             <td class="p-3"><?= htmlspecialchars($booking['check_out']) ?></td>
-                            <td class="p-3">$<?= number_format($booking['total_price'], 2) ?></td>
+                            <td class="p-3"><?= number_format($booking['total_price'], 2) ?></td>
                             <td class="p-3"><?= htmlspecialchars($booking['status']) ?></td>
                             <td class="p-3 text-center">
                                 <?php if ($booking['status'] === 'Pending'): ?>

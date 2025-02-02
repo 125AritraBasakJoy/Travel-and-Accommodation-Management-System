@@ -1,11 +1,12 @@
 <?php
+ob_start(); // Start output buffering
 include('../public/inc/header.php'); 
 
 require "../app/models/BookingFlight.php";
 
 // Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -58,7 +59,7 @@ $bookings = $BookingFlight->getUserBookings($user_id);
                     <tr class="bg-white border-b border-gray-300 hover:bg-gray-100 transition">
                         <td class="p-3 text-center"><?php echo htmlspecialchars($booking['flight_id']); ?></td>
                         <td class="p-3 text-center"><?php echo htmlspecialchars($booking['seat_number']); ?></td>
-                        <td class="p-3 text-center font-semibold text-blue-600">$<?php echo htmlspecialchars($booking['total_price']); ?></td>
+                        <td class="p-3 text-center font-semibold text-blue-600">৳<?php echo htmlspecialchars($booking['total_price']); ?></td>
                         <td class="p-3 text-center">
                             <span class="px-2 py-1 rounded-md text-white
                                 <?php echo ($booking['status'] === 'Pending') ? 'bg-yellow-500' : ($booking['status'] === 'Confirmed' ? 'bg-green-500' : 'bg-red-500'); ?>">

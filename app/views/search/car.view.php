@@ -60,8 +60,17 @@ $Cars = $Car->searchCars($filters);
                 <?php echo htmlspecialchars($car['model']); ?>
               </h2>
               <p class="mt-1">Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
-              <p class="mt-1">Price per Hour: $<?php echo htmlspecialchars($car['price_per_hour']); ?></p>
+              <p class="mt-1">Price per Hour: ৳<?php echo htmlspecialchars($car['price_per_hour']); ?></p>
               <p class="mt-1">Make Year: <?php echo htmlspecialchars($car['make_year']); ?></p>
+                          <!-- Booking Button for Logged-In Users -->
+                          <?php if (isset($_SESSION['user_id'])) { ?>
+                <form action="<?php echo BASE_URL?>booking/car" method="GET" class="mt-4">
+                  <input type="hidden" name="car_id" value="<?php echo htmlspecialchars($car['car_id']); ?>">
+                  <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg">Book Now</button>
+                </form>
+              <?php } else { ?>
+                <p class="mt-4 text-red-500">Please log in to book this car.</p>
+              <?php } ?>
             </div>
           </div>
         <?php } ?>

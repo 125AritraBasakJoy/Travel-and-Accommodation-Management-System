@@ -10,13 +10,15 @@
 
 <?php
 require "../app/models/CarModel.php";
+
 $Car = new CarModel();
 $Cars = $Car->getAllCars(); // Fetch data from the database
 
 // Fetch locations dynamically (Assume LocationModel exists)
+
 require "../app/models/Location.php";
-$Location = new Location();
-$locations = $Location->getAllLocations();
+$LocationModel = new Location();  // Renamed to avoid conflict
+$locations = $LocationModel->getAllLocations();
 ?>
 
 <section class="text-gray-600 body-font">
@@ -62,12 +64,16 @@ $locations = $Location->getAllLocations();
               </a>
             </div>
             <div class="w-3/4 pl-4">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"> CAR MODEL</h3>
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+  <?php echo htmlspecialchars($LocationModel->getLocationById($car['location_id'])['city']); ?>
+</h3>
+
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"> CAR MODEL</h3>
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($car['model']); ?>
               </h2>
               <p class="mt-1">Seats: <?php echo htmlspecialchars($car['seats']); ?></p>
-              <p class="mt-1">Price per Hour: $<?php echo htmlspecialchars($car['price_per_hour']); ?></p>
+              <p class="mt-1">Price per Hour: ৳<?php echo htmlspecialchars($car['price_per_hour']); ?></p>
               <p class="mt-1">Make Year: <?php echo htmlspecialchars($car['make_year']); ?></p>
 
               <!-- Booking Button for Logged-In Users -->

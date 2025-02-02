@@ -119,7 +119,7 @@ $bookings = $BookingCar->getUserBookings($_SESSION['user_id']);
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['car_model']); ?></td>
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['start_time']); ?></td>
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['end_time']); ?></td>
-                                <td class="px-4 py-2 border">$<?php echo htmlspecialchars($booking['total_price']); ?></td>
+                                <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['total_price']); ?></td>
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['status']); ?></td>
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['created_at']); ?></td>
                             </tr>

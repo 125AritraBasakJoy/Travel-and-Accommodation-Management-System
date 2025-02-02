@@ -70,7 +70,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
           foreach ($hotels as $data) {
               $hotelId = htmlspecialchars($data["hotel_id"]);
               $hotelName = htmlspecialchars($data["name"]);
-              $pricePerNight = '$' . number_format($data["price_per_night"], 2);
+              $pricePerNight = '' . number_format($data["price_per_night"], 2);
               $description = htmlspecialchars($data["description"]);
               $capacity = htmlspecialchars($data["capacity"]);
               $hotelPhoto = htmlspecialchars($data["hotelPhoto"]);
@@ -84,7 +84,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
                         <div class="mt-4">
                           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">HOTEL</h3>
                           <h2 class="text-gray-900 title-font text-lg font-medium">' . $hotelName . '</h2>
-                          <p class="mt-1 text-gray-700">Price per Night: <span class="font-semibold">' . $pricePerNight . '</span></p>
+                          <p class="mt-1 text-gray-700">Price per Night: ৳ <span class="font-semibold">' . $pricePerNight . '</span></p>
                           <p class="mt-1 text-gray-700">Capacity: <span class="font-semibold">' . $capacity . ' people</span></p>
                           <p class="mt-1 text-gray-600">' . $description . '</p>';
 
