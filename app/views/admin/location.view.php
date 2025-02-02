@@ -3,7 +3,7 @@ require "../app/models/Location.php";
 
 $Location = new Location();
 
-// Handle form submissions
+// Handle form submissions 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
