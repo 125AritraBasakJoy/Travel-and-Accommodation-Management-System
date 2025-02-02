@@ -5,13 +5,13 @@ require "../app/models/Location.php";
 $Flight = new FlightModel();
 $Location = new Location();
 
-// Get search parameters
+// Get search parameters and take user input
 $departure = $_GET['departure'] ?? '';
 $arrival = $_GET['arrival'] ?? '';
 $budget = $_GET['budget'] ?? '';
 $locations = $Location->getAllLocations();
 // Fetch matching flights
-$results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
+$results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget); //as an array
 ?>
 
 <!doctype html>
@@ -22,6 +22,7 @@ $results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+  <!-- load File -->
 <?php include('../public/inc/header.php'); ?>
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
@@ -117,7 +118,9 @@ $results = $Flight->searchFlightsWithBudget($departure, $arrival, $budget);
     <h1 class="text-2xl font-medium text-gray-900 mb-4">Search Results</h1>
 
     <div class="-my-8">
+      <!-- If results are not empty -->
       <?php if (!empty($results)) { ?>
+        <!-- Show all available resulr on this location-->
         <?php foreach ($results as $flight) { ?>
           <div class="py-8 flex items-center border-b border-gray-200">
             <div class="w-1/4">
