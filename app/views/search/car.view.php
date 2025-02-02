@@ -38,10 +38,13 @@ $Cars = $Car->searchCars($filters);
     </form>
   </div>
 </section>
+<!-- Display Search Results Section -->
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="-my-8">
+      <!-- Check If Car Empty -->
       <?php if (!empty($Cars)) { ?>
+        <!-- Loop through cars and display them -->
         <?php foreach ($Cars as $car) { ?>
           <div class="py-8 flex items-center border-b border-gray-200">
             <div class="w-1/4">
@@ -56,6 +59,7 @@ $Cars = $Car->searchCars($filters);
             </div>
             <div class="w-3/4 pl-4">
               <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CAR MODEL</h3>
+              <!-- Display Car details -->
               <h2 class="text-gray-900 title-font text-lg font-medium">
                 <?php echo htmlspecialchars($car['model']); ?>
               </h2>
