@@ -1,10 +1,11 @@
 <?php
-// Done by Ashik Ibadullah
+
 require "../app/models/UserModel.php";
 
 $userModel = new UserModel();
 $message = ''; // Variable to store success or error message
 
+//Check all required fills are submitted or not
 if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["phone"])) {
     $name = $_POST["name"];
     $email = $_POST["email"];
