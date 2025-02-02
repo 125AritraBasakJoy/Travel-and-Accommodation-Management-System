@@ -4,7 +4,7 @@ require "../app/models/HotelModel.php";
 $vendorModel = new Vendor();
 $message = "";
 
-// Handle form submissions
+// Handle form submissions 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
