@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     let isValid = true;
 
-    // Validate Name
+    // Validate Name 
     if (name === '') {
         document.getElementById('name-error').textContent = 'Full Name is required.';
         isValid = false;
