@@ -80,6 +80,7 @@ $Cars = $Car->searchCars($filters);
     </div>
   </div>
 </section>
+
 <?php include('../public/inc/footer.php'); ?>
 </body>
 </html>
