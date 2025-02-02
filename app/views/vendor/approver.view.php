@@ -33,7 +33,7 @@ switch ($user_type) {
         $bookings = [];
 }
 
-// Handle status update
+// Handle status update 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking_id'], $_POST['status'])) {
     $booking_id = intval($_POST['booking_id']);
     $new_status = $_POST['status'];
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking_id'], $_POST[
     exit();
 }
 
-// Display success message after redirect
+// Display success message after redirect 
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
     unset($_SESSION['message']);
