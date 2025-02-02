@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             $message = "Hotel created successfully!";
         } elseif ($action === 'update') {
-            $hotelPhoto = $_FILES['hotelPhoto']['name'];
+            $hotelPhoto = $_FILES['hotelPhoto']['name']; 
             if ($hotelPhoto) {
                 move_uploaded_file($_FILES['hotelPhoto']['tmp_name'], "../public/uploads/" . $hotelPhoto);
             } else {
