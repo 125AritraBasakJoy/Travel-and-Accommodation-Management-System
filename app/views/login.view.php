@@ -72,6 +72,7 @@ session_destroy();
         errorMessage += 'Please enter a valid email address.\n';
       }
 
+
       // Password validation (at least 6 characters)
       if (password.length < 6) {
         errorMessage += 'Password must be at least 6 characters long.';
