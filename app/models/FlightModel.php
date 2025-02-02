@@ -25,7 +25,36 @@ class FlightModel
             return [];
         }
     }
- 
+    public function searchFlightsWithBudget($departure, $arrival, $budget = null)
+    {
+        $query = "SELECT `flight_id`, `flight_number`, `departure_location_id`, `arrival_location_id`, `departure_time`, `arrival_time`, `price`
+                  FROM `flight`
+                  WHERE `departure_location_id` = ? AND `arrival_location_id` = ?";
+        
+        if ($budget) {
+            $query .= " AND `price` <= ?";
+        }
+    
+        $stmt = $this->db->prepare($query);
+    
+        if (!$stmt) {
+            die("Failed to prepare statement: " . $this->db->error);
+        }
+    
+        if ($budget) {
+            $stmt->bind_param("ssi", $departure, $arrival, $budget);
+        } else {
+            $stmt->bind_param("ss", $departure, $arrival);
+        }
+    
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            die("Query execution failed: " . $stmt->error);
+        }
+    }
+    
     // Read a specific flight by ID
     public function getFlightById($flight_id)
     {
@@ -107,4 +136,3 @@ class FlightModel
 }
 ?>
 
-has context menu
