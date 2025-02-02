@@ -182,7 +182,7 @@ if ($_SESSION['type'] === 'car') {
             </div>
         </form>
 
-        <!-- Table -->
+        <!-- Table --> 
         <h2 class="text-xl font-bold mb-4">All <?php echo ucfirst($_SESSION['type']); ?>s</h2>
         <table class="table-auto w-full bg-white rounded shadow-md">
             <thead>
