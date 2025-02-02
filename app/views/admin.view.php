@@ -160,7 +160,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             <p>Click to manage the users in your system.</p>
         </div>
 
-        <!-- Location Management Card -->
+        <!-- Location Management Card --> 
         <div class="card dashboard-card" onclick="window.location.href='admin/location'">
             <i class="fas fa-map-marker-alt"></i> <!-- Changed to map marker icon for location -->
             <h4>Manage Location</h4>
