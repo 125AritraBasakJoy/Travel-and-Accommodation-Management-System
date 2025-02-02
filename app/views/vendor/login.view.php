@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
         </form>
-        New ?<a href='signup'>Create An Account</a>
+        New ?<a href='<?php echo BASE_URL?>vendor/signup'>Create An Account</a>
     </div>
 
     <script>
