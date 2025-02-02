@@ -135,21 +135,22 @@ public function getVendorById($vendor_id)
     
     
 
-    // DELETE a vendor
-    public function deleteVendor($vendor_id)
-    {
-        $sql = "DELETE FROM vendor WHERE vendor_id = ?";
-        $stmt = $this->db->prepare($sql);
+// DELETE a vendor
+public function deleteVendor($vendor_id)
+{
+    $sql = "DELETE FROM vendor WHERE vendor_id = ?";
+    $stmt = $this->db->prepare($sql);
 
-        if ($stmt) {
-            $stmt->bindParam(1, $vendor_id);
-            if ($stmt->execute()) {
-                return true; // Vendor deleted successfully
-            }
+    if ($stmt) {
+        $stmt->bind_param("i", $vendor_id); // "i" specifies that vendor_id is an integer
+        if ($stmt->execute()) {
+            return true; // Vendor deleted successfully
         }
-    
-        return false; // Failed to delete vendor
     }
+
+    return false; // Failed to delete vendor
+}
+
 
 // Vendor Login (validate credentials)
 public function validateLogin($email, $password)
