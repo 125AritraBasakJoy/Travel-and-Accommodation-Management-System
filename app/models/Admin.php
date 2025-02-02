@@ -7,7 +7,7 @@ class Admin
     public function __construct()
     {
         $database = new Database();
-        $this->db = $database->getConnection();
+        $this->db = $database->getConnection(); 
     }
 
     public function getAllAdmins()
