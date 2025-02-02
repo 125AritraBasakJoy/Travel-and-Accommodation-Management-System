@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $duration = ($end_timestamp - $start_timestamp) / 3600; // Duration in hours
     $total_price = $duration * $price_per_hour;
 
-    // Create booking
+    // Create booking by calling bookcar()
     $user_id = $_SESSION['user_id'];
     $status = "Pending"; // Default status until confirmed
 
@@ -66,7 +66,9 @@ $bookings = $BookingCar->getUserBookings($_SESSION['user_id']);
     <title>Book Car</title>
 </head>
 <body>
-    <?php if ($car) : ?>
+    <!-- check if car exist or not before showing the form -->
+    <?php if ($car) : ?> 
+        <!-- Display Car details -->
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-12 mx-auto">
                 <h2 class="text-2xl font-medium text-gray-900">Book <?php echo htmlspecialchars($car['model']); ?></h2>
@@ -103,6 +105,7 @@ $bookings = $BookingCar->getUserBookings($_SESSION['user_id']);
             <div class="mt-6 overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead>
+                        <!-- Table Creted-->
                         <tr>
                             <th class="px-4 py-2 border">Booking ID</th>
                             <th class="px-4 py-2 border">Car Model</th>
@@ -114,6 +117,7 @@ $bookings = $BookingCar->getUserBookings($_SESSION['user_id']);
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Loop through each booking and display -->
                         <?php foreach ($bookings as $booking) : ?>
                             <tr>
                                 <td class="px-4 py-2 border"><?php echo htmlspecialchars($booking['booking_id']); ?></td>
