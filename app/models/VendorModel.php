@@ -96,7 +96,7 @@ public function getVendorById($vendor_id)
         return $vendor;
     }
 
-    return false; // If something goes wrong, return false
+    return false; // If something goes wrong, return false 
 }
 
 
