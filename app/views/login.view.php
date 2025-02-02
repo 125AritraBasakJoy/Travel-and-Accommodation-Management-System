@@ -56,7 +56,7 @@ session_destroy();
       Don't have an account? <a href="signup" class="text-blue-600 hover:underline">Sign up</a>
     </div>
     <div class="mt-6 text-sm text-center text-gray-500">
-      Are You Vendor? <a href="vendor" class="text-blue-600 hover:underline">Click Here to Login</a>
+      Are You Vendor? <a href="vendor/login" class="text-blue-600 hover:underline">Click Here to Login</a>
     </div>
   </div>
 
