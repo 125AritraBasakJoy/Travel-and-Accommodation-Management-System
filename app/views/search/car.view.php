@@ -49,7 +49,7 @@ $Cars = $Car->searchCars($filters);
                 <img 
                   alt="<?php echo htmlspecialchars($car['model']); ?>" 
                   class="object-cover object-center w-full h-full block" 
-                  src="<?php echo htmlspecialchars("uploads/car/".$car['carPhoto']); ?>" 
+                  src="<?php echo htmlspecialchars(BASE_URL."uploads/car/".$car['carPhoto']); ?>" 
                   onerror="this.onerror=null;this.src='https://dummyimage.com/420x260/000/fff&text=No+Image';"
                 >
               </a>
